@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package message;
+
+option go_package = "github.com/LiddleChild/test-shared-proto/generated/message";
+
+import "user/user.proto";
+
+message Message {
+  user.User sender = 1;
+  user.User receiver = 2;
+  string content = 3;
+}
+
+message GetAllMessagesRequest {}
+message GetAllMessagesResponse {
+  repeated Message messages = 1;
+}
+
+service MessageService {
+  rpc GetAllMessages(GetAllMessagesRequest) returns (GetAllMessagesResponse);
+}
